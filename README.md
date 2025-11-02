@@ -35,34 +35,6 @@ by *Aydin & Brandt*.
 
 ---
 
-TL_TARNet/
-├── Data/
-│   ├── Datasets/
-│   │   ├── Empirical/
-│   │   │   ├── biased_subsample.csv
-│   │   │   ├── random_subsample.csv
-│   │   │   ├── punjab.csv
-│   │   │   └── uttar_pradesh.csv
-│   │   └── Simulation/
-│   │       ├── source_1000.csv
-│   │       ├── source_5000.csv
-│   │       ├── source_10000.csv
-│   │       └── source_20000.csv
-│   └── Generation/
-├── Distances/
-│   └── Distance.py
-├── Functions/
-│   ├── TARNet.py
-│   ├── Optimize_IPM.py
-│   └── Optimize_loss.py
-├── Results/
-│   ├── empirical/
-│   │   ├── w_TL/
-│   │   └── wo_TL/
-│   ├── simulation/
-│   └── plots/
-└── README.md
-
 
 
 ## Contact
