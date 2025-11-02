@@ -9,11 +9,14 @@ by *Aydin & Brandt*.
 ---
 
 ### **Data**
-- **Simulation** (`Data_generation/Simulation.R`):  
+- **Simulation** (`Data/Datasets/Simulation`):  
   Includes simulated source datasets. Using the functions in the Generation file, target datasets (randomized or non randomized) can be created.
 
-- **Empirical Example** (`Data_generation/IHDS.R`):  
+- **Empirical Example** (`Data/Datasets/Empirical`):  
   Datasets from the [IHDS-II household survey dataset](https://ihds.umd.edu/data/ihds-2) for empirical analysis. Code under Generation file can be used to create datasets.
+
+- **Generation** (`Data/Generation`):
+  Includes functions to create empirical or simulation datasets.    
 
 ### **Functions (Model & Training Procedure)**
 - **TARNet Model** (`TARNet.py`):  
