@@ -70,5 +70,5 @@ TL_TARNet
 
 ## Contact
 
-For questions or discussion, feel free to open an issue or contact the authors.
+For questions or discussion, feel free to contact the authors.
 
