@@ -33,6 +33,32 @@ by *Aydin & Brandt*.
   Implements Wasserstein/IPM-based metrics for quantifying dataset distribution differences.
 
 ---
+ 
+### **Repository Structure**
+
+TL_TARNet/
+│
+├── Data/
+│   ├── Datasets/
+│   │   ├── Simulation/        # Simulated source datasets of varying sizes
+│   │   └── Empirical/         # Subsets of IHDS-II survey data (Punjab, UP, etc.)
+│   └── Generation/            # Scripts for simulation & empirical data preparation
+│
+├── Distances/
+│   └── Distance.py            # Wasserstein & IPM-based distance measures
+│
+├── Functions/
+│   ├── TARNet.py              # TARNet architecture (shared rep + outcome heads)
+│   ├── Optimize_IPM.py        # Phase 1: Representation alignment (IPM minimization)
+│   └── Optimize_loss.py       # Phase 2: Factual outcome training on target data
+│
+└── Results/
+    ├── simulation/            # Results from simulated transfer experiments
+    ├── empirical/             # Results from IHDS datasets
+    └── plots/                 # Visualization of alignment & performance
+
+---
+
 
 ## Contact
 
