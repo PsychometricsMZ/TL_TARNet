@@ -8,15 +8,12 @@ by *Aydin & Brandt*.
 
 ---
 
-## Repository Structure
-
-
 ### **Data**
 - **Simulation** (`Data_generation/Simulation.R`):  
-  Generates simulated datasets.
+  Includes simulated source datasets. Using the functions in the Generation file, target datasets (randomized or non randomized) can be created.
 
 - **Empirical Example** (`Data_generation/IHDS.R`):  
-  Prepares and subsets the [IHDS-II household survey dataset](https://ihds.umd.edu/data/ihds-2) for empirical analysis.
+  Datasets from the [IHDS-II household survey dataset](https://ihds.umd.edu/data/ihds-2) for empirical analysis. Code under Generation file can be used to create datasets.
 
 ### **Functions (Model & Training Procedure)**
 - **TARNet Model** (`TARNet.py`):  
@@ -30,12 +27,43 @@ by *Aydin & Brandt*.
 
 ### **Distance Measures**
 - **Distribution Distances** (`Distances/Distance.py`):  
-  Implements Wasserstein/IPM-based metrics for quantifying dataset distribution differences.
-
+  Implements IPM-based metrics for quantifying dataset distribution differences.
 
 ---
 
 
+## Repository Structure
+
+```text
+TL_TARNet
+|-- Data
+|   |-- Datasets
+|   |   |-- Empirical
+|   |   |   |-- biased_subsample.csv
+|   |   |   |-- random_subsample.csv
+|   |   |   |-- punjab.csv
+|   |   |   `-- uttar_pradesh.csv
+|   |   `-- Simulation
+|   |       |-- source_1000.csv
+|   |       |-- source_5000.csv
+|   |       |-- source_10000.csv
+|   |       |-- source_20000.csv
+|    |      `-- source_30000.csv
+|   `-- Generation
+|
+|-- Distances
+|   `-- Distance.py
+|
+|-- Functions
+|   |-- TARNet.py
+|   |-- Optimize_IPM.py
+|   `-- Optimize_loss.py
+|
+`-- Results
+    |-- simulation
+    |-- empirical
+    `-- plots
+```
 
 ## Contact
 
