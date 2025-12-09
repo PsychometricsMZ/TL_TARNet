@@ -119,3 +119,89 @@ data_clean2 <- data_clean[vars1]
 ihds_data <- na.omit(data_clean2)
 
 
+#IHDS sub-sampling
+generate_biased_target_empirical <- function(data, N.t, seed = 1,
+                                             treatment = "collect_fw",
+                                             outcome = "study_min_wk",
+                                             covariates = NULL) {
+  # Select variables
+  if (is.null(covariates)) {
+    covariates <- setdiff(names(data), c(treatment, outcome))
+  }
+  dat <- data[, unique(c(covariates, treatment, outcome)), drop = FALSE]
+
+  # Keep complete cases for modeling
+  dat <- droplevels(dat)
+  dat_cc <- dat[stats::complete.cases(dat), , drop = FALSE]
+  if (nrow(dat_cc) == 0) stop("No complete cases for the chosen variables.")
+
+  # Coerce treatment to binary 0/1
+  Araw <- dat_cc[[treatment]]
+  if (is.logical(Araw)) {
+    A <- as.integer(Araw)
+  } else if (is.numeric(Araw)) {
+    if (!all(sort(unique(Araw)) %in% c(0, 1))) stop("Treatment must be coded 0/1.")
+    A <- as.integer(Araw)
+  } else { # factor/character like "0"/"1"
+    tmp <- suppressWarnings(as.numeric(as.character(Araw)))
+    if (all(!is.na(tmp)) && all(sort(unique(tmp)) %in% c(0, 1))) {
+      A <- as.integer(tmp)
+    } else {
+      stop("Treatment is not 0/1; please recode to 0/1.")
+    }
+  }
+  dat_cc[[treatment]] <- A
+
+  # Fit an outcome model and predict Y0 (set A=0)
+  fml <- stats::as.formula(paste(outcome, "~", paste(c(treatment, covariates), collapse = " + ")))
+  fit <- stats::lm(fml, data = dat_cc)
+  new0 <- dat_cc
+  new0[[treatment]] <- 0L
+  y0_hat <- as.numeric(stats::predict(fit, newdata = new0))
+
+  # Turn Y0 into a prob via logistic; stabilize scale
+  z <- as.numeric(scale(y0_hat))
+  z[is.na(z)] <- y0_hat - mean(y0_hat, na.rm = TRUE)
+  p.select <- plogis(z)  # in (0,1)
+  cp.select <- p.select * A + (1 - p.select) * (1 - A)
+  cp.select <- pmin(pmax(cp.select, 1e-6), 1 - 1e-6) # guard against 0/1
+
+  # Accept-reject sampling (with replacement) until reaching N.t
+  set.seed(seed)
+  N.s <- nrow(dat_cc)
+  out_idx <- integer(N.t)
+  ntt <- 1L
+  while (ntt <= N.t) {
+    i <- sample.int(N.s, 1L)
+    if (stats::rbinom(1L, 1L, cp.select[i]) == 1L) {
+      out_idx[ntt] <- i
+      ntt <- ntt + 1L
+    }
+  }
+
+  dat_t <- dat_cc[out_idx, , drop = FALSE]
+  rownames(dat_t) <- NULL
+
+  # (Optional) attach attributes for diagnostics
+  attr(dat_t, "cp.select") <- cp.select[out_idx]
+  attr(dat_t, "y0_hat") <- y0_hat[out_idx]
+  return(dat_t)
+}
+
+K   <- 200    # number of subsamples
+N.t <- 350    # rows per subsample
+
+ds_list <- lapply(seq_len(K), function(s)
+  generate_biased_target_empirical(
+    data      = uttar_fw,
+    N.t       = N.t,
+    seed      = s,                   
+    treatment = "collect_fw",
+    outcome   = "study_min_wk"
+  )
+)
+
+stopifnot(all(vapply(ds_list, nrow, integer(1)) == N.t))
+
+
+
