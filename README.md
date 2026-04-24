@@ -2,8 +2,6 @@
 
 
 
----
-
 ### **Data**
 - **Simulation** (`Data/Datasets/Simulation`):  
   Includes simulated source datasets. Using the functions in the Generation file, target datasets (randomized or non randomized) can be created.
@@ -64,7 +62,4 @@ TL_TARNet
     `-- plots
 ```
 
-## Contact
-
-For questions or discussion, feel free to contact the authors.
 
