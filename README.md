@@ -1,9 +1,5 @@
 # Transfer Learning for Individual Treatment Effects
 
-This repository contains the code accompanying the paper:
-
-**“Advantages and Limitations in the Use of Transfer Learning for Individual Treatment Effects in Causal Machine Learning”**  
-by *Aydin & Brandt*.
 
 
 ---
