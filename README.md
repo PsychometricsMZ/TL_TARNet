@@ -32,34 +32,49 @@
 ## Repository Structure
 
 ```text
-TL_TARNet
-|-- Data
-|   |-- Datasets
-|   |   |-- Empirical
-|   |   |   |-- biased_subsample.csv
-|   |   |   |-- random_subsample.csv
-|   |   |   |-- punjab.csv
-|   |   |   `-- uttar_pradesh.csv
-|   |   `-- Simulation
-|   |       |-- source_1000.csv
-|   |       |-- source_5000.csv
-|   |       |-- source_10000.csv
-|   |       |-- source_20000.csv
-|    |      `-- source_30000.csv
-|   `-- Generation
-|
-|-- Distances
-|   `-- Distance.py
-|
-|-- Functions
-|   |-- TARNet.py
-|   |-- Optimize_IPM.py
-|   `-- Optimize_loss.py
-|
-`-- Results
-    |-- simulation
-    |-- empirical
-    `-- plots
+TL_TARNet/
+├── Data/
+│   ├── Datasets/
+│   │   ├── Empirical/          # empirical datasets (IHDS subsamples, Punjab, Uttar Pradesh)
+│   │   │   ├── biased_subsample.csv
+│   │   │   ├── punjab.csv
+│   │   │   ├── random_subsample.csv
+│   │   │   └── uttar_pradesh.csv
+│   │   ├── Simulation_1/       # source datasets at varying sample sizes
+│   │   │   ├── source_1000.csv
+│   │   │   ├── source_5000.csv
+│   │   │   ├── source_10000.csv
+│   │   │   ├── source_20000.csv
+│   │   │   └── source_30000.csv
+│   │   └── Simulation_2/       # 93 simulated datasets (.csv)
+│   └── Generation/             # data-generation scripts
+│       ├── IHDS.R
+│       ├── Simulation_1.R
+│       └── Simulation_2.py
+├── Distances/
+│   └── Distance.py
+├── Functions/                  # TARNet model + optimization code
+│   ├── Optimize_IPM.py
+│   ├── Optimize_loss.py
+│   └── TARNet.py
+├── Results/
+│   ├── Empirical/              # empirical results, with/without transfer learning
+│   │   ├── biased_and_source_w_TL.csv
+│   │   ├── biased_wo_TL.csv
+│   │   ├── random_and_source_w_TL.csv
+│   │   └── random_wo_TL.csv
+│   ├── Plots/
+│   │   ├── Empirical/          # 8 plot images (.png)
+│   │   ├── Simulation_1/       # 30 plot images (.png)
+│   │   └── Simulation_2/       # 74 plot images (.png)
+│   ├── Simulation_1/
+│   │   ├── with_TL.csv
+│   │   └── without_TL.csv
+│   └── Simulation_2/
+│       ├── results_all/        # 200 per-run result files (.csv)
+│       ├── results.csv
+│       └── summary.csv
+└── README.md
 ```
 
 
