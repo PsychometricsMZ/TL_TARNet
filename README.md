@@ -1,4 +1,4 @@
-# Transfer Learning for Individual Treatment Effects
+# Transfer Learning for Treatment Effect Estimation in Small Samples
 
 
 
