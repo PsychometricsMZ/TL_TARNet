@@ -1,0 +1,20 @@
+Table C.2: a = 1, mean (SE) over replications; oracle bias b_X = 0.22; MMD2(X) at N_T=50: 0.052; MMD2(X) at N_T=500: 0.020
+source-only                | N_T=50: bias -0.014(0.010) err 0.094(0.006) MMD2 0.1068(0.0082) probeAUC 0.607 n=50 | N_T=500: bias -0.013(0.003) err 0.084(0.002) MMD2 0.0883(0.0032) probeAUC 0.699 n=50
+heads only                 | N_T=50: bias +0.039(0.016) err 0.096(0.007) MMD2 0.1068(0.0082) probeAUC 0.607 n=50 | N_T=500: bias +0.151(0.016) err 0.096(0.004) MMD2 0.0883(0.0032) probeAUC 0.699 n=50
+encoder only (kappa=0)     | N_T=50: bias +0.024(0.016) err 0.098(0.007) MMD2 0.1068(0.0082) probeAUC 0.607 n=50 | N_T=500: bias +0.100(0.015) err 0.091(0.004) MMD2 0.0879(0.0031) probeAUC 0.699 n=50
+encoder only (kappa=1)     | N_T=50: bias +0.020(0.018) err 0.099(0.007) MMD2 0.1065(0.0082) probeAUC 0.607 n=50 | N_T=500: bias +0.108(0.016) err 0.092(0.004) MMD2 0.0870(0.0031) probeAUC 0.699 n=50
+encoder only (kappa=10)    | N_T=50: bias +0.002(0.014) err 0.097(0.006) MMD2 0.1052(0.0080) probeAUC 0.605 n=50 | N_T=500: bias +0.058(0.014) err 0.089(0.003) MMD2 0.0862(0.0031) probeAUC 0.699 n=50
+TL-TARNet (kappa=0)        | N_T=50: bias +0.050(0.022) err 0.103(0.008) MMD2 0.1068(0.0082) probeAUC 0.607 n=50 | N_T=500: bias +0.127(0.016) err 0.093(0.004) MMD2 0.0880(0.0031) probeAUC 0.699 n=50
+TL-TARNet (kappa=1)        | N_T=50: bias +0.048(0.022) err 0.103(0.007) MMD2 0.1065(0.0082) probeAUC 0.606 n=50 | N_T=500: bias +0.137(0.017) err 0.095(0.004) MMD2 0.0871(0.0031) probeAUC 0.699 n=50
+TL-TARNet (kappa=10)       | N_T=50: bias +0.032(0.021) err 0.101(0.007) MMD2 0.1052(0.0080) probeAUC 0.604 n=50 | N_T=500: bias +0.150(0.018) err 0.096(0.004) MMD2 0.0848(0.0031) probeAUC 0.698 n=50
+hybrid PhiT hS             | N_T=50: bias +0.013(0.014) err 0.096(0.007) MMD2 0.1065(0.0082) probeAUC 0.606 n=50 | N_T=500: bias +0.019(0.013) err 0.086(0.002) MMD2 0.0871(0.0031) probeAUC 0.699 n=50
+hybrid PhiS hT             | N_T=50: bias +0.022(0.015) err 0.095(0.007) MMD2 0.1068(0.0082) probeAUC 0.607 n=50 | N_T=500: bias +0.109(0.015) err 0.090(0.003) MMD2 0.0883(0.0032) probeAUC 0.699 n=50
+target-only CFR            | N_T=50: bias +0.735(0.160) err 1.875(0.133) MMD2 0.0563(0.0061) probeAUC 0.542 n=50 | N_T=500: bias +0.608(0.055) err 0.921(0.085) MMD2 0.0632(0.0035) probeAUC 0.675 n=50
+
+Shapley attribution of the re-imported bias (per replication, then mean (SE)):
+  N_T=50: total +0.063 (0.019)  representation +0.027 (0.010)  heads +0.036 (0.010)  representation share 0.43
+  N_T=500: total +0.151 (0.016)  representation +0.030 (0.013)  heads +0.120 (0.015)  representation share 0.20
+
+Relative movement of the trainable blocks (TL-TARNet, kappa = 1):
+  N_T=50: encoder layer 0.013, head output layers 0.012, stop epoch 50
+  N_T=500: encoder layer 0.040, head output layers 0.029, stop epoch 62
