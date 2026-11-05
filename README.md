@@ -2,7 +2,7 @@
 
 Code, simulated data and results for the paper of the same title, which evaluates the transfer-learning framework for TARNet of Aloui et al. (2023), TL-TARNet and the CITA score, on small and possibly non-randomized targets.
 
-The paper is under double-blind review. Author and citation information will be added after the review.
+
 
 ## Contents
 
