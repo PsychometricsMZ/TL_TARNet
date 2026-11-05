@@ -1,31 +1,4 @@
-"""Appendix C: where the target's selection enters the network, and how it scales with the selection.
 
-Imports the unchanged tltarnet.py; the two additions it needs (``set_trainable`` and
-``transfer_finetune_block``, a copy of ``tl.transfer_finetune`` whose only change is
-which blocks are trainable) live here, so nothing in the pipeline is modified.
-Two experiments, both on the design of Simulation 1 with N_S = 5000 and N_T in {50, 500}:
-
-  C.2  blocks : on the non-randomized targets of the main text (a = 1)
-               source-only | heads | encoder x kappa in {0, 1, 10} | both x kappa in {0, 1, 10}
-               + the two recombined models (Phi_T, h_S) and (Phi_S, h_T) from "both, kappa = 1"
-               + target-only CFR
-  C.3  lambda : on targets whose selection strength a varies (manifest column ``a``;
-               Eq. 24: P(T = 1 | x, eps) = expit(a * (mu0(x) + eps) / SD(Y0)))
-               source-only | heads only | encoder only (kappa = 1) | TL-TARNet (both, kappa = 1)
-               + the two recombined models from TL-TARNet | target-only CFR
-               -> bias, error and the block attribution of the re-imported bias as a function of a
-                  (Lambda_q, b_X(a) and the naive bias for each a come from msm_strength.py)
-
-``kappa`` sets both IPM weights of the fine-tuning objective, alpha = alpha_cross = kappa.
-Every row of the output carries bias and PEHE on ALL target units against the target's
-own ITE, the within-target MMD^2 of the representation, the probe AUC of the
-representation for T, the relative movement of the two trainable blocks and the
-stopping epoch.  ``summarize_appendix_c.py`` turns the rows into Table C.2 / Table C.3 / Figure C.1.
-
-The module also holds the data-generating process of Simulation 1 (Eq. 16) with the
-selection of Eq. 24, used by ``make_lambda_targets.py`` to draw the targets of C.3 and
-by ``check_dgp.py`` to verify that the existing non-randomized targets are Eq. 24 at a = 1.
-"""
 import copy
 import math
 
