@@ -39,4 +39,3 @@ Each row holds the results for one target data set. In the column names, `target
 | Table 8 | `Results/appendix_c/appendix_c/lr1e-3_wsrc0/blocks_*.csv` |
 | Table 9, Figure 7 | `Results/appendix_c/appendix_c/lambda_*.csv` |
 
-The files of Simulation 3 carry the label `sim2b`; the folders named `sim2b` hold an earlier version that the paper does not use.
