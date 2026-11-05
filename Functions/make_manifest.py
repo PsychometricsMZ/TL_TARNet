@@ -1,20 +1,4 @@
-"""Build a manifest for run_appendix_c.py from file patterns.
 
-    # C.2 (blocks): the main text's non-randomized targets, stacked files with a ``rep`` column
-    python make_manifest.py --out manifests/appc_blocks.csv --n-reps 50 \
-        --spec "data/sim1/target_n50_biased.csv:50:1" --spec "data/sim1/target_n500_biased.csv:500:1"
-
-    # C.3 (lambda) from the main text's files plus the generated grid (make_lambda_targets.py also
-    # writes a manifest of its own files, so this is only needed to mix the two)
-    python make_manifest.py --out manifests/appc_lambda.csv --n-reps 50 \
-        --spec "data/sim1/target_n50_random.csv:50:0"  --spec "data/sim1/target_n500_random.csv:500:0" \
-        --spec "data/sim1/target_n50_biased.csv:50:1"  --spec "data/sim1/target_n500_biased.csv:500:1" \
-        --spec "data/appendix_c/target_n50_a0.25.csv:50:0.25" ...
-
-Each --spec is PATTERN:N_T:a.  A matching file with a ``rep`` column contributes one manifest row per
-replication (the first --n-reps values of rep, sorted); files without it are sorted and numbered
-rep = 0, 1, ... (the first --n-reps are kept).  Output columns: path, N_T, rep, a.
-"""
 import argparse
 import glob
 
