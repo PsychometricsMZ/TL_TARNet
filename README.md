@@ -1,4 +1,4 @@
-# Evaluating transfer learning for treatment-effect estimation in small samples
+# Transfer learning for treatment-effect estimation in small samples
 
 Code, simulated data and results for the paper of the same title, which evaluates the transfer-learning framework for TARNet of Aloui et al. (2023), TL-TARNet and the CITA score, on small and possibly non-randomized targets.
 
