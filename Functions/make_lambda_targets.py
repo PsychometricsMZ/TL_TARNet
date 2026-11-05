@@ -1,24 +1,4 @@
-"""Targets of Appendix C.3: the DGP of Simulation 1 (Eq. 16) with the selection of Eq. 24 at several slopes a.
 
-    P(T = 1 | x, eps0) = expit(a * (Y0 - E[Y0]) / SD(Y0)),   a = 0 randomized,  a = 1 the main text's non-randomized
-    target (treated share 1/2 at every a).  --center 0 gives the uncentered form expit(a * Y0 / SD(Y0)) (Nov 3 run).
-
-For every (N_T, rep) the covariates, both potential outcomes and the selection uniform are drawn ONCE and
-shared by all values of a (common random numbers): between the targets of one replication only the
-treatment assignment differs, so the curves along a are paired.  ite = tau(x), as in the pipeline's files.
-
-Output layout = the pipeline's (one stacked file per condition with a ``rep`` column):
-    <outdir>/target_n{N_T}_a{a}.csv        columns rep, X1..X5, Tr, Y, ite
-plus a manifest for run_appendix_c.py (columns path, N_T, rep, a).
-
-    python make_lambda_targets.py --outdir data/appendix_c --manifest manifests/appc_lambda.csv \
-        --a-grid 0 0.25 0.5 1 2 3 --n-t 50 500 --n-reps 50
-
---subsample-source data/sim1/source_n5000.csv draws the covariates of each target from the source file
-without replacement instead of afresh from N(0, I_5), as the main text's targets were; the potential
-outcomes are drawn afresh in both cases (the files do not carry them), so the two options are the same
-population with and without unit overlap with the source.
-"""
 import argparse
 import os
 
