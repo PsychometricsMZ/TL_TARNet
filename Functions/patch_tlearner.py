@@ -1,24 +1,4 @@
-"""Patch tltarnet.py and run.py in place: add a T-learner base model (two
-independent networks, no shared encoder) so that Kunzel et al. (2018), Alg. 8
-(warm start on a T-learner) can be run with the existing pipeline.
 
-Run from the project directory:   python patch_tlearner.py
-Exits with a message (and changes nothing) if a file does not match the expected
-text.  Afterwards:
-
-    python run.py --experiment sim2 --config configs/tlearner.json sources      # T-learner sources
-    python run.py --experiment sim2 --config configs/tlearner.json chunk ... \\
-        --variants configs/variants_kunzel.json --estimators tl --tag warm_tlearner
-
-What changes
-* tltarnet.py: class TLearner (each arm = the TARNet encoder layers followed by
-  the TARNet head layers, nothing shared), build_model(), and a ``kind``
-  argument of train_tarnet.
-* run.py: config key ``model`` ("tarnet" | "tlearner"), checkpoint names
-  <source_tag>__tlearner__seed<s>.pt and sources_tlearner.csv for the new kind
-  (TARNet checkpoints and sources.csv are untouched), load_model dispatch, a
-  ``model_kind`` output column, and ``kind`` passed to every from-scratch fit.
-"""
 import sys
 
 edits = {"tltarnet.py": [], "run.py": []}
