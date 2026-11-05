@@ -1,19 +1,4 @@
-"""Runner for Appendix C (manifest-driven, array-job friendly).
 
-    python run_appendix_c.py --exp blocks --source data/sim1/source_n5000.csv --manifest manifests/appc_blocks.csv \
-        --out results/appendix_c/blocks_3.csv --chunk 3 --n-chunks 20 [--source-model models/appc_source_source_n5000.pt]
-
-    python run_appendix_c.py --exp lambda --source data/sim1/source_n5000.csv --manifest manifests/appc_lambda.csv \
-        --out results/appendix_c/lambda_0.csv --chunk 0 --n-chunks 40
-
-Manifest: CSV with columns  path, N_T, rep  and, for --exp lambda,  a  (selection strength; a = 1 is the main text).
-``path`` is either one target file (X1..Xp, Tr, Y, ite) or one of the pipeline's stacked files with a ``rep``
-column (e.g. data/sim1/target_n50_biased.csv: 100 replications x 50 rows), from which the rows with
-rep == ``rep`` are taken.  Rows of the manifest are split into --n-chunks contiguous chunks.
-The source model is trained once per source file and cached at --source-model (trained if missing).
-Fine-tuning settings default to the main text (Sim 1: lr 1e-3, no source factual term, kappa = 1); the
-target-only CFR and the source model default to the pipeline's settings (Table 9).
-"""
 import argparse
 import os
 
