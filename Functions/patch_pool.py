@@ -1,7 +1,4 @@
-"""Patch run.py in place: train the pooled baseline from several initialisations
-and keep the fit with the lowest held-out factual loss.  Run from ~/tl_tarnet_v2:
-    python patch_pool.py
-Exits with a message (and changes nothing) if run.py does not match the expected text."""
+
 import sys
 
 path = "run.py"
