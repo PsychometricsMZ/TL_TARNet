@@ -1,20 +1,4 @@
-"""Check that the pipeline's target files are the DGP of Simulation 1 with the selection of Eq. 24, and
-read off their selection strength, so that the "a = 1 is the main text" of Appendix C holds for the files
-actually used.
 
-    python check_dgp.py data/sim1/target_n500_biased.csv [data/sim1/target_n50_biased.csv ...]
-
-For every file it reports
-  max |ite - tau(x)|                 should be ~1e-12 (tau(x) = 1 + 0.5 sum x + x1 x2 + cos x3)
-  P(T = 1)
-  E[eps0 | T = 0] = mean of Y - mu0(x) over the controls      (observable: controls reveal Y0)
-  E[eps1 | T = 1] = mean of Y - mu0(x) - tau(x) over the treated   (~0 if the two residuals are independent,
-                                                                 as the oracle bias b_X of C.1 assumes)
-  SD of the control residual
-and, for comparison, the same quantities implied by Eq. 24 for a in a grid (Monte Carlo, 400,000 units):
-the row whose P(T=1) and E[eps0 | T=0] match the file is the selection strength of the file.  The two
-alternative links expit(Y0) (no standardization) and expit((Y0 - E[Y0]) / s) (centered) are listed too.
-"""
 import sys
 
 import numpy as np
